@@ -6,6 +6,11 @@ import { Component } from "@angular/core";
 })
 export class ProductListComponent {
   pageTitle: string = 'Product List'
+  imageWidth: number = 50
+  imageHeight: number = 50
+  imageMargin: number = 2
+  showImage: boolean = false
+  listFilter: string = '';
   products: any[] = [
     {
       "productId": 2,
@@ -15,7 +20,7 @@ export class ProductListComponent {
       "description": "15 gallon capacity rolling cart",
       "price": 32.99,
       "starRating": 4.2,
-      "imageUrl": "assets/image/garden_cart.png"
+      "imageUrl": "assets/images/garden_cart.png"
     },
     {
       "productId": 5,
@@ -28,4 +33,8 @@ export class ProductListComponent {
       "imageUrl": "assets/images/hammer.png"
     }
   ];
+
+  toggleImage(): void {
+    this.showImage = !this.showImage;
+  }
 }
