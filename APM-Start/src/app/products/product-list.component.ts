@@ -12,7 +12,18 @@ export class ProductListComponent implements OnInit{
   imageHeight: number = 50
   imageMargin: number = 2
   showImage: boolean = false
-  listFilter: string = '';
+  
+  private _listFilter: string = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredProducts = this.performFilter(value);
+  }
+
+  filteredProducts: IProducts[] = [];
+
   products: IProducts[] = [
     {
       "productId": 2,
@@ -35,6 +46,12 @@ export class ProductListComponent implements OnInit{
       "imageUrl": "assets/images/hammer.png"
     }
   ];
+
+  performFilter(filterBy: string): IProducts[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: IProducts)=> 
+      product.productName.toLocaleLowerCase().includes(filterBy));
+  }
 
   ngOnInit(): void {
     console.log('Inside OnInit: OnInit has run')
