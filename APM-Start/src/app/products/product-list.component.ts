@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit{
   imageMargin: number = 2
   showImage: boolean = false
   
-  private _listFilter: string = '';
+  private _listFilter: string = 'cart';
   get listFilter(): string {
     return this._listFilter;
   }
@@ -59,5 +59,9 @@ export class ProductListComponent implements OnInit{
 
   toggleImage(): void {
     this.showImage = !this.showImage;
+  }
+
+  onRatingClicked(message: string): void {
+    this.pageTitle = 'Product List' + message;
   }
 }
